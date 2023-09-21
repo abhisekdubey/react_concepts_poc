@@ -24,7 +24,7 @@ code {
   height: 100vh;
 }
 
-table{
+table {
   width: 100rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.204);
   border-radius: 10px;
@@ -32,25 +32,50 @@ table{
   margin: auto;
 }
 
-th{
+th {
   padding: 1rem;
   background-color: rgb(239, 116, 16);
   color: white;
   text-align: left;
 }
 
-th:first-of-type{
+th:first-of-type {
   border-top-left-radius: 10px;
 }
 
-th:last-of-type{
+th:last-of-type {
   border-top-right-radius: 10px
 }
 
-tr:hover{
+tr:hover {
   background-color: rgb(213, 213, 213);
 }
 
-td{
+td {
   padding: 1rem;
+}
+
+.btn-container {
+  margin: auto;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.btn-container button {
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-container button:disabled {
+  cursor: not-allowed;
+  background-color: rgb(229, 229, 229);
+  color: rgba(0, 0, 0, 0.269);
 }

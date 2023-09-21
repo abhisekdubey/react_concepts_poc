@@ -1,4 +1,4 @@
-import { useSortBy, useTable } from 'react-table';
+import { useSortBy, useTable, usePagination } from 'react-table';
 import { data } from './assets/data.json';
 
 const columns = [
@@ -22,15 +22,32 @@ const columns = [
 
 function App() {
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    page,
+    nextPage,
+    previousPage,
+    canPreviousPage,
+    canNextPage,
+    state: { pageIndex },
+    pageCount,
+    gotoPage
+  } = useTable({
     // columns: [{
     //   Header: '',
     //   accessor: 'id'
     // }],
     columns,
-    data
+    data,
+    // initialState: { pageSize: 5 } // for pagination limit beacuse by default 10 row limit
   },
-    useSortBy)
+    useSortBy, // plugins
+    usePagination
+  )
 
   return (
     <div className="container">
@@ -68,7 +85,8 @@ function App() {
 
         <tbody {...getTableBodyProps()}>
           {
-            rows.map(row => {
+            // rows.map(row => {
+            page.map(row => { // for pagination
               prepareRow(row)
 
               return <tr {...row.getRowProps()}>
@@ -89,6 +107,17 @@ function App() {
           </tr> */}
         </tbody>
       </table>
+
+      <div className='btn-container'>
+
+        <button disabled={pageIndex === 0} onClick={() => gotoPage(0)}>First</button>
+
+        <button disabled={!canPreviousPage} onClick={previousPage}>Prev</button>
+        <span>{pageIndex + 1} of {pageCount}</span>
+        <button disabled={!canNextPage} onClick={nextPage}>Next</button>
+
+        <button disabled={pageIndex >= pageCount - 1} onClick={() => gotoPage(pageCount - 1)}>Last</button>
+      </div>
     </div>
   );
 }
