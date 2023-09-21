@@ -1,28 +1,14 @@
 import { useSortBy, useTable } from 'react-table';
-
-const data = [
-  {
-    id: 1,
-    gender: 'Male',
-    salary: 55000
-  },
-  {
-    id: 2,
-    gender: 'Male',
-    salary: 60000
-  },
-  {
-    id: 3,
-    gender: 'Female',
-    salary: 45000
-  },
-
-]
+import { data } from './assets/data.json';
 
 const columns = [
   {
     Header: 'ID', // header which is show in ui
     accessor: 'id' // accessor is like id for header
+  },
+  {
+    Header: 'Name',
+    accessor: 'name'
   },
   {
     Header: 'Gender',
