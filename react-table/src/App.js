@@ -1,4 +1,3 @@
-import './App.css';
 import { useSortBy, useTable } from 'react-table';
 
 const data = [
@@ -60,6 +59,12 @@ function App() {
                   headerGroup.headers.map(header => (
                     <th {...header.getHeaderProps(header.getSortByToggleProps())}>
                       {header.render("Header")}
+
+                      {
+                        header.isSorted && (
+                          <span>{header.isSortedDesc ? ' ⬆️' : ' ⬇️'}</span>
+                        )
+                      }
                     </th>
                   ))
                 }
